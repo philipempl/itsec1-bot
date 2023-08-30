@@ -26,7 +26,7 @@ WORKDIR /app
 
 COPY --from=builder /app/.venv /app/.venv
 
-COPY ./itsec1_app /app/itsec1_app
+COPY ./app /app/app
 COPY ./.streamlit /app/.streamlit
 
-CMD ["streamlit", "run", "itsec1_app/main.py", "--server.port=8080"]
+CMD ["streamlit", "run", "app/main.py", "--server.port=8080"]

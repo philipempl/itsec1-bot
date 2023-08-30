@@ -5,6 +5,6 @@ services:
       context: ../
       dockerfile: docker/Dockerfile
     volumes:
-      - ../itsec1_app/:/app/itsec1_app
+      - ../app/:/app/app
     ports:
       - 8080:8080
