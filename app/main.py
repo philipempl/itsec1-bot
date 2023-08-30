@@ -12,9 +12,11 @@ from app.components.sidebar import sidebar
 from langchain.chains import ConversationChain
 from langchain.llms import OpenAI
 
+API_KEY = "TEST"
+
 # Load the conversation chain and language model
 def load_chain():
-    llm = OpenAI(openai_api_key="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", temperature=0)
+    llm = OpenAI(openai_api_key=API_KEY, temperature=0)
     chain = ConversationChain(llm=llm)
     return chain
 

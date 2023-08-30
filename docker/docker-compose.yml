@@ -3,8 +3,61 @@ services:
   itsec1-bot:
     build:
       context: ../
-      dockerfile: docker/Dockerfile
+      dockerfile: docker/itsec1_bot/Dockerfile
     volumes:
       - ../app/:/app/app
     ports:
       - 8080:8080
+    networks:
+      - net
+
+  langflow:
+    build:
+      context: ./langflow
+      dockerfile: Dockerfile
+    ports:
+      - "7860:7860"
+    volumes:
+      - ./:./langflow
+
+  openllm:
+    build:
+      context: ./openllm
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:./openllm
+    networks:
+      - net
+      
+  postgres-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: itsec1
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: pass
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - net
+
+  chroma:
+    image: ghcr.io/chroma-core/chroma:latest
+    volumes:
+      - index_data:/chroma/.chroma/index
+    ports:
+      - 8000:8000
+    networks:
+      - net
+
+volumes:
+  index_data:
+    driver: local
+  backups:
+    driver: local
+  postgres-data:
+
+networks:
+  net:
+    driver: bridge
