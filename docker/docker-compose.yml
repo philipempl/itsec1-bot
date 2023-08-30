@@ -1,0 +1,10 @@
+version: '3'
+services:
+  itsec1-bot:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ../itsec1_app/:/app/itsec1_app
+    ports:
+      - 8080:8080
