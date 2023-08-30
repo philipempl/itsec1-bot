@@ -12,7 +12,7 @@ ENV POETRY_NO_INTERACTION=1 \
 
 WORKDIR /app
 
-COPY docker/itsec1_bot/pyproject.toml docker/itsec1_bot/poetry.lock ./
+COPY docker/app/pyproject.toml docker/app/poetry.lock ./
 
 RUN poetry install --without dev --no-root && rm -rf $POETRY_CACHE_DIR
 

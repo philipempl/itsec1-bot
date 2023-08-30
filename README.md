@@ -51,11 +51,7 @@ Folgen Sie diesen Schritten, um die bereitgestellten Dienste mit Docker Compose 
 
    Klonen Sie dieses Repository auf Ihre lokale Maschine.
 
-3. **Zum Repository navigieren:**
-
-   Öffnen Sie ein Terminal und wechseln Sie zum Hauptverzeichnis des geklonten Repositorys, in dem sich die Datei `docker-compose.yml` befindet.
-
-4. **Dienste starten:**
+3. **Dienste starten:**
 
    Starten Sie die in der Datei `docker-compose.yml` definierten Dienste mit dem folgenden Befehl:
 
@@ -65,7 +61,7 @@ Folgen Sie diesen Schritten, um die bereitgestellten Dienste mit Docker Compose 
 
    Die Option `-d` steht für den "detach"-Modus, der die Dienste im Hintergrund ausführt.
 
-5. **Zugriff auf Benutzeroberflächen:**
+4. **Zugriff auf Benutzeroberflächen:**
 
    Nach dem Start der Dienste können Sie auf die verschiedenen Benutzeroberflächen über die folgenden URLs zugreifen:
 

@@ -2,10 +2,10 @@ version: '3'
 services:
   itsec1-bot:
     build:
-      context: ../
-      dockerfile: docker/itsec1_bot/Dockerfile
+      context: .
+      dockerfile: ./docker/app/Dockerfile
     volumes:
-      - ../app/:/app/app
+      - ./app/:/app/app
     ports:
       - 8080:8080
     networks:
@@ -13,21 +13,21 @@ services:
 
   langflow:
     build:
-      context: ./langflow
+      context: ./docker/langflow
       dockerfile: Dockerfile
     ports:
       - "7860:7860"
     volumes:
-      - ./:./langflow
+      - ./:./docker/langflow
 
   openllm:
     build:
-      context: ./openllm
+      context: ./docker/openllm
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
     volumes:
-      - ./:./openllm
+      - ./:./docker/openllm
     networks:
       - net
       
