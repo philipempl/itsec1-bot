@@ -1,198 +1,41 @@
-<h1 align="center">
-📖 LangChain-Streamlit-Docker App Template
-</h1>
 
-![UI](ui.PNG?raw=true)
+# IT Security 1 Chatbot
 
-## 🔧 Features
+## Zielsetzung
+Das Ziel dieses Projekts ist es, einen Chatbot für IT-Security 1 und VAWI Unterlagen zu entwickeln. Der Chatbot soll mithilfe von Vorlesungsfolien, Screencasts, PDFs und YouTube-Links in der Lage sein, dir bei Fragen relevante und hilfreiche Antworten unter Verwendung der genannten Quellen zu bieten. Der Chatbot sollte in jeder Antwort die entsprechenden Stellen aus den genannten Quellen (Vorlesungsfolien, Screencasts, PDFs, YouTube-Links) zitieren und einen Link zu der jeweiligen Quelle bereitstellen. Dies ermöglicht den Benutzern, die Antwort nachzuvollziehen und weitere Informationen zu erhalten.
 
-- Basic Skeleton App configured with `openai` API
-- A ChatBot using LangChain and Streamlit
-- Docker Support with Optimisation Cache etc
-- Deployment on Streamlit Public Cloud
-- Deployment on Google Cloud App Engine
-- Deployment on Google Cloud using `Cloud Run`
+## Anforderungen
+1. **On-Premise Lösung**: Der Chatbot soll auf einer On-Premise-Infrastruktur betrieben werden, um Kosten zu minimieren und deine Datenhoheit zu wahren.
 
-This repo contains an `main.py` file which has a template for a chatbot implementation.
+2. **Private Sprachmodelle**: Verwende private Sprachmodelle wie "GPT4All" anstelle von OpenAI GPT, um den Datenschutz zu gewährleisten.
 
-## Adding your chain
-To add your chain, you need to change the `load_chain` function in `main.py`.
-Depending on the type of your chain, you may also need to change the inputs/outputs that occur later on.
+3. **Docker Container**: Für das einfache Deployment, d.h. Starten/Stoppen der einzelnen Services, sollen Docker Container verwendet werden.
 
+4. **Open Source**: Nutze ausschließlich Open Source Lösungen für die Entwicklung des Chatbots.
 
-## 💻 Running Locally
+## Entwicklungsressourcen
+- Python
+- [Docker Compose](https://www.docker.com/blog/build-and-deploy-a-langchain-powered-chat-app-with-docker-and-streamlit/)
+- [LangChain](https://github.com/langchain-ai/langchain)
+- [Flowise JavaScript UI](https://github.com/FlowiseAI/Flowise)
+- [Langflow Python UI](https://github.com/logspace-ai/langflow)
+- GPT Modelle von [Hugging Face](https://huggingface.co)
+- [UI Chainlit](https://github.com/Chainlit/chainlit)
+- Lokales LLM (Local Language Model) von [GitHub Repository](https://github.com/imartinez/privateGPT)
+- [Multi Modal Search](https://python.langchain.com/docs/use_cases/more/agents/agents/multi_modal_output_agent)
+- [Citations](https://medium.com/@yotamabraham/in-text-citing-with-langchain-question-answering-e19a24d81e39)
+- [Postgresql](https://www.postgresql.org)
+- [pgvector](https://github.com/pgvector/pgvector)
+- [Jina](https://github.com/jina-ai/jina)
+- [Langchain Serve](https://github.com/jina-ai/langchain-serve)
 
-1. Clone the repository📂
+## Schritte
+1. **Vorbereitung**: Installiere die benötigten Abhängigkeiten wie Python und die erforderlichen Bibliotheken aus den bereitgestellten Links.
 
-```bash
-git clone https://github.com/amjadraza/langchain-streamlit-docker-template.git
-```
+2. **Chain-Erstellung**: Nutze Flowise, um Chains aus den vorhandenen Materialien zu erstellen, die als Grundlage für den Chatbot dienen.
 
-2. Install dependencies with [Poetry](https://python-poetry.org/) and activate virtual environment🔨
+3. **Integration von GPT Modellen**: Verwende die GPT Modelle von Hugging Face, um intelligente Antworten zu generieren. Integriere dabei UI Chainlit, um die Nutzerschnittstelle zu gestalten.
 
-```bash
-poetry install
-poetry shell
-```
+4. **Integration von Local LLM**: Implementiere das lokale Sprachmodell aus dem Local Language Model Projekt, um private und datenschutzfreundliche Interaktionen zu ermöglichen.
 
-3. Run the Streamlit server🚀
-
-```bash
-streamlit run app/main.py 
-```
-
-Run App using Docker
---------------------
-This project includes `Dockerfile` to run the app in Docker container. In order to optimise the Docker Image
-size and building time with cache techniques, I have follow tricks in below Article 
-https://medium.com/@albertazzir/blazing-fast-python-docker-builds-with-poetry-a78a66f5aed0
-
-Build the docker container
-
-``docker  build . -t langchain-chat-app:latest ``
-
-To generate Image with `DOCKER_BUILDKIT`, follow below command
-
-```DOCKER_BUILDKIT=1 docker build --target=runtime . -t langchain-chat-app:latest```
-
-1. Run the docker container directly 
-
-``docker run -d --name langchain-chat-app -p 8080:8080 langchain-chat-app ``
-
-2. Run the docker container using docker-compose (Recommended)
-
-``docker-compose up``
-
-
-Deploy App on Streamlit Public Cloud
-------------------------------------
-This app can be deployed on Streamlit Public Cloud using GitHub. Below is the Link to 
-Publicly deployed App
-
-https://langchain-docker-template-amjadraza.streamlit.app/
-
-
-Deploy App on Google App Engine
---------------------------------
-This app can be deployed on Google App Engine following below steps.
-
-## Prerequisites
-
-Follow below guide on basic Instructions.
-[How to deploy Streamlit apps to Google App Engine](https://dev.to/whitphx/how-to-deploy-streamlit-apps-to-google-app-engine-407o)
-
-We added below tow configurations files 
-
-1. `app.yaml`: A Configuration file for `gcloud`
-2. `.gcloudignore` : Configure the file to ignore file / folders to be uploaded
-
-I have adopted `Dockerfile` to deploy the app on GCP APP Engine.
-
-1. Initialise & Configure the App
-
-``gcloud app create --project=[YOUR_PROJECT_ID]``
-
-2. Deploy the App using
-
-``gcloud app deploy``
-
-3. Access the App using 
-
-https://langchain-chat.ts.r.appspot.com/
-
-
-Deploy App on Google Cloud using Cloud Run
-------------------------------------------
-
-This app can be deployed on Google Cloud using Cloud Run following below steps.
-
-## Prerequisites
-
-Follow below guide on basic Instructions.
-[How to deploy Streamlit apps to Google App Engine](https://dev.to/whitphx/how-to-deploy-streamlit-apps-to-google-app-engine-407o)
-
-We added below tow configurations files 
-
-1. `cloudbuild.yaml`: A Configuration file for `gcloud`
-2. `.gcloudignore` : Configure the file to ignore file / folders to be uploaded
-
-we are going to use `Dockerfile` to deploy the app using Google Cloud Run.
-
-1. Initialise & Configure the Google Project using Command Prompt
-
-`gcloud app create --project=[YOUR_PROJECT_ID]`
-
-2. Enable Services for the Project
-
-```
-gcloud services enable cloudbuild.googleapis.com
-gcloud services enable run.googleapis.com
-```
-
-3. Create Service Account
-
-```
-gcloud iam service-accounts create langchain-app-cr \
-    --display-name="langchain-app-cr"
-
-gcloud projects add-iam-policy-binding langchain-chat \
-    --member="serviceAccount:langchain-app-cr@langchain-chat.iam.gserviceaccount.com" \
-    --role="roles/run.invoker"
-
-gcloud projects add-iam-policy-binding langchain-chat \
-    --member="serviceAccount:langchain-app-cr@langchain-chat.iam.gserviceaccount.com" \
-    --role="roles/serviceusage.serviceUsageConsumer"
-
-gcloud projects add-iam-policy-binding langchain-chat \
-    --member="serviceAccount:langchain-app-cr@langchain-chat.iam.gserviceaccount.com" \
-    --role="roles/run.admin"
-``` 
-
-4. Generate the Docker
-
-`DOCKER_BUILDKIT=1 docker build --target=runtime . -t australia-southeast1-docker.pkg.dev/langchain-chat/app/langchain-chat-app:latest`
-
-5. Push Image to Google Artifact's Registry
-
-`configure-docker` authentication     
-
-`gcloud auth configure-docker australia-southeast1-docker.pkg.dev`
-
-In order to push the `docker-image` to Artifact registry, first create app in the region of choice. 
-
-Check the artifacts locations
-
-`gcloud artifacts locations list`
-
-Create the repository with name `app`
-
-```
-gcloud artifacts repositories create app \
-    --repository-format=docker \
-    --location=australia-southeast1 \
-    --description="A Langachain Streamlit App" \
-    --async
-```
-
-Once ready, let us push the image to location
-
-`docker push australia-southeast1-docker.pkg.dev/langchain-chat/app/langchain-chat-app:latest`
-
-6. Deploy using Cloud Run
-
-Once image is pushed to Google Cloud Artifacts Registry. Let us deploy the image.
-
-```
-gcloud run deploy langchain-chat-app --image=australia-southeast1-docker.pkg.dev/langchain-chat/app/langchain-chat-app:latest \
-    --region=australia-southeast1 \
-    --service-account=langchain-app-cr@langchain-chat.iam.gserviceaccount.com
-```
-
-## Report Feedbacks
-
-As `langchain-streamlit-docker-template` is a template project with minimal example. Report issues if you face any. 
-
-## DISCLAIMER
-
-This is a template App, when using with openai_api key, you will be charged a nominal fee depending
-on number of prompts etc.
+5. **Produktivsetzung**: Setze den Chatbot in einer Produktivumgebung mit Jina und Langchain Serve auf, um den Chatbot für Kursteilnehmer:in zugänglich zu machen.
