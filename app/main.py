@@ -10,19 +10,21 @@ import streamlit as st
 import time
 from app.components.sidebar import sidebar
 from langchain.chains import ConversationChain
-from langchain.llms import OpenAI
-
-API_KEY = "TEST"
+from langchain.chat_models import ChatOllama
+from langchain.callbacks.manager import CallbackManager
+from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler                                  
 
 # Load the conversation chain and language model
 def load_chain():
-    llm = OpenAI(openai_api_key=API_KEY, temperature=0)
+    llm = ChatOllama(base_url="http://ollama:11434", 
+             model="alice", 
+             callback_manager = CallbackManager([StreamingStdOutCallbackHandler()]))
     chain = ConversationChain(llm=llm)
     return chain
 
 # Get user input text
 def get_text():
-    input_text = st.text_input("user", "Hallo, wie kann ich dir helfen?", key="input")
+    input_text = st.text_input("user", "Hallo, ich bin Alice, wie kann ich dir helfen?", key="input")
     return input_text
 
 if __name__ == "__main__":
@@ -44,7 +46,7 @@ if __name__ == "__main__":
     # Initialize session_state messages if not present
     if "messages" not in st.session_state:
         st.session_state["messages"] = [
-            {"role": "assistant", "content": "Wie kann ich dir helfen?"}]
+            {"role": "assistant", "content": "Hallo, ich bin Alice, wie kann ich dir helfen?"}]
     
     # Show chat messages from history upon rerunning the app
     for message in st.session_state.messages:
@@ -64,11 +66,10 @@ if __name__ == "__main__":
             message_placeholder = st.empty()
             full_response = ""
 
-            with st.spinner('Ich denke nach...'):
-                assistant_response = chain.run(input=user_input)
+   
             
             # Simulate typing with a slight delay in milliseconds
-            for section in assistant_response.split():
+            for section in chain.run(input=user_input).split():
                 full_response += section + " "
                 time.sleep(0.05)
                 # Add a blinking cursor to simulate typing

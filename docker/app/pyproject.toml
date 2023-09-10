@@ -1,17 +1,16 @@
 [tool.poetry]
-name = "langchain-streamlit-docker-template"
+name = "itsec1-bot"
 version = "0.1.0"
-description = "A template langchain Streamlit App with Docker"
-authors = ["Amjad Raza"]
+description = "A bot assisting studens"
+authors = ["Philip Empl"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "langchain_streamlit_docker_template"}]
+packages = [{include = "itsec1-bot"}]
 
 
 [tool.poetry.dependencies]
 python = "^3.10"
-langchain = "^0.0.184"
-openai = "^0.27.7"
+langchain = "^0.0.278"
 streamlit = "^1.24.0"
 
 

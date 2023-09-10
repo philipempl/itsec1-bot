@@ -1,6 +1,8 @@
 version: '3'
 services:
   itsec1-bot:
+    hostname: itsec1-bot
+    container_name: itsec1-bot
     build:
       context: .
       dockerfile: ./docker/app/Dockerfile
@@ -8,6 +10,7 @@ services:
       - ./app/:/app/app
     ports:
       - 8080:8080
+    restart: always
     networks:
       - net
 
@@ -18,36 +21,18 @@ services:
     ports:
       - "7860:7860"
     volumes:
-      - ./:./docker/langflow
+      - ./docker/langflow:/app
 
-  openllm:
+  ollama:
+    hostname: ollama
+    container_name: ollama
     build:
-      context: ./docker/openllm
+      context: ./docker/ollama
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "11434:11434"
     volumes:
-      - ./:./docker/openllm
-    networks:
-      - net
-      
-  postgres-db:
-    image: postgres:latest
-    environment:
-      POSTGRES_DB: itsec1
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: pass
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    networks:
-      - net
-
-  chroma:
-    image: ghcr.io/chroma-core/chroma:latest
-    volumes:
-      - index_data:/chroma/.chroma/index
-    ports:
-      - 8000:8000
+      - ollama_data:/app
     networks:
       - net
 
@@ -57,6 +42,8 @@ volumes:
   backups:
     driver: local
   postgres-data:
+  ollama_data:
+    driver: local
 
 networks:
   net:

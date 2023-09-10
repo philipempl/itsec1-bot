@@ -4,6 +4,10 @@ data/local_data/
 # Secrets
 .streamlit/secrets.toml
 
+# Langflow
+docker/langflow/.langflow.db
+docker/langflow/
+
 # VSCode
 .vscode/
 

@@ -15,18 +15,45 @@ Das Ziel dieses Projekts ist die Entwicklung eines Chatbots für IT-Security 1 u
 ## Entwicklungsressourcen
 - Programmiersprache: Python
 - [Docker Compose](https://www.docker.com/blog/build-and-deploy-a-langchain-powered-chat-app-with-docker-and-streamlit/)
+
+### LLM Chaining
 - [LangChain](https://github.com/langchain-ai/langchain)
-- [Flowise JavaScript UI](https://github.com/FlowiseAI/Flowise)
-- [Langflow Python UI](https://github.com/logspace-ai/langflow)
+
+### Langchain Low-Code No-Code
+- [Langflow for Langchain Python](https://github.com/logspace-ai/langflow)
+
+### Open Source LLM Models
 - GPT Modelle von [Hugging Face](https://huggingface.co)
-- [UI Chainlit](https://github.com/Chainlit/chainlit)
-- Lokales LLM (Local Language Model) von [GitHub Repository](https://github.com/imartinez/privateGPT)
-- [Multi Modal Search](https://python.langchain.com/docs/use_cases/more/agents/agents/multi_modal_output_agent)
-- [Citations](https://medium.com/@yotamabraham/in-text-citing-with-langchain-question-answering-e19a24d81e39)
-- Datenbank: [Postgresql](https://www.postgresql.org)
+
+### Lokales Deployment von LLMs auf CPU
+- [Ollama](https://github.com/jmorganca/ollama)
+- [TGI](https://github.com/huggingface/text-generation-inference)
+- [Llama.cpp](https://github.com/ggerganov/llama.cpp)
+- [OpenLLM](https://github.com/bentoml/OpenLLM)
+- [GPT4All](https://github.com/nomic-ai/gpt4all)
+- [Petals](https://github.com/bigscience-workshop/petals)
+- [Inference](https://github.com/xorbitsai/inference)
+
+### Beispiele
+- [LocalGPT](https://github.com/PromtEngineer/localGPT)
+- [Anything-LLM](https://github.com/Mintplex-Labs/anything-llm)
+- [PrivateGPT](https://github.com/imartinez/privateGPT)
+
+### Python UI
+- [Streamlit](https://github.com/streamlit/streamlit)
+- [Chainlit](https://github.com/Chainlit/chainlit)
+
+### (Vektor-)Datenbanken
+- [ChromaDB](https://github.com/chroma-core/chroma)
+- [FAISS](https://github.com/facebookresearch/faiss)
+- [Postgresql](https://www.postgresql.org)
 - Vektorähnliche Daten in Postgresql: [pgvector](https://github.com/pgvector/pgvector)
+
+### Andere Links
+- [Citations](https://medium.com/@yotamabraham/in-text-citing-with-langchain-question-answering-e19a24d81e39)
 - Suchplattform: [Jina](https://github.com/jina-ai/jina)
 - Dienst für Langchain: [Langchain Serve](https://github.com/jina-ai/langchain-serve)
+
 
 ## Schritte
 1. **Vorbereitung**: Installieren der benötigten Abhängigkeiten wie Python und die empfohlenen Bibliotheken.

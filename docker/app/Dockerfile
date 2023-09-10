@@ -3,6 +3,8 @@ FROM python:3.11-slim-buster as builder
 
 RUN apt-get update && apt-get install -y git
 
+RUN pip install --upgrade typing-extensions
+
 RUN pip install poetry==1.4.2
 
 ENV POETRY_NO_INTERACTION=1 \
