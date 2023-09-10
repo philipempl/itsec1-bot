@@ -9,18 +9,37 @@ sys.path.append(os.path.abspath('.'))
 import streamlit as st
 import time
 from app.components.sidebar import sidebar
-from langchain.chains import ConversationChain
-from langchain.chat_models import ChatOllama
+from langchain.llms import Ollama
+from langchain.document_loaders import DirectoryLoader
 from langchain.callbacks.manager import CallbackManager
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler                                  
+from langchain.chains import ConversationalRetrievalChain
+from langchain.memory import ConversationBufferMemory
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.vectorstores import Chroma
 
-# Load the conversation chain and language model
-def load_chain():
-    llm = ChatOllama(base_url="http://ollama:11434", 
+# Function to load documents from a directory
+def load_docs(directory_path="./docs"):
+    loader = DirectoryLoader(directory_path)
+    return loader.load()
+
+# Function to split documents into chunks of text
+def split_docs(documents, chunk_size=1000, chunk_overlap=20):
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+    return text_splitter.split_documents(documents)
+
+# Function to load the conversation chain
+def load_chain(documents):
+    vectordb = Chroma.from_documents(documents, OpenAIEmbeddings(), persist_directory=".")
+    vectordb.persist()
+    llm = Ollama(base_url="http://ollama:11434", 
              model="alice", 
              callback_manager = CallbackManager([StreamingStdOutCallbackHandler()]))
-    chain = ConversationChain(llm=llm)
-    return chain
+    memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True, input_key='question', output_key='answer')
+    return ConversationalRetrievalChain.from_llm(llm, vectordb.as_retriever(search_kwargs={'k': 6}), return_source_documents=True, memory=memory)
+
+
 
 # Get user input text
 def get_text():
@@ -41,40 +60,39 @@ if __name__ == "__main__":
     sidebar()
     
     # Load the conversation chain
-    chain = load_chain()
+    docs = split_docs(load_docs())
+    chain = load_chain(docs)
 
-    # Initialize session_state messages if not present
+    # Initialize chat history if not already present in session state
     if "messages" not in st.session_state:
-        st.session_state["messages"] = [
-            {"role": "assistant", "content": "Hallo, ich bin Alice, wie kann ich dir helfen?"}]
-    
-    # Show chat messages from history upon rerunning the app
+        st.session_state["messages"] = [{"role": "assistant", "content": "Hallo, ich bin Alice. Wie kann ich dir helfen?"}]
+
+    # Display chat messages from history on app rerun
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
-    # Process user input
+
     if user_input := st.chat_input("Was ist deine Frage?"):
-        # Add user message to the chat history
+        # Add user message to chat history
         st.session_state.messages.append({"role": "user", "content": user_input})
-        # Show user message in the chat container
+        # Display user message in chat message container
         with st.chat_message("user"):
             st.markdown(user_input)
 
-        # Generate assistant response
         with st.chat_message("assistant"):
             message_placeholder = st.empty()
             full_response = ""
-
-   
             
-            # Simulate typing with a slight delay in milliseconds
-            for section in chain.run(input=user_input).split():
-                full_response += section + " "
+
+            with st.spinner('Ich überlege ...'):
+                assistant_response = chain({"question": user_input})
+
+            # Simulate stream of response with milliseconds delay
+            for chunk in assistant_response["answer"].split():
+                full_response += chunk + " "
                 time.sleep(0.05)
                 # Add a blinking cursor to simulate typing
                 message_placeholder.markdown(full_response + "▌")
-            message_placeholder.markdown(full_response)
-        
-        # Add assistant response to the chat history
-        st.session_state.messages.append({"role": "assistant", "content": full_response})
+                message_placeholder.markdown(full_response)
+            st.session_state.messages.append({"role": "assistant", "content": full_response})
