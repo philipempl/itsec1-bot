@@ -72,15 +72,15 @@ Follow these steps to run the provided services using Docker Compose:
 
 ### Accessible User Interfaces (UIs)
 
-1. **IT Security Bot Interface (`itsec1-bot`):**
+1. **Lecture Chat Interface (`lecture-chat`):**
 
-   The IT Security Bot interface is accessible via a web browser by visiting:
+   The Lecture Chat interface is accessible via a web browser by visiting:
 
    ```
    http://localhost:8080
    ```
 
-   This interface allows interaction with the IT Security Bot.
+   This interface allows interaction with the Lecture Chat Bot.
 
 2. **Language Processing Tool Interface (`langflow`):**
 
@@ -114,4 +114,4 @@ This will stop the services and remove the associated containers, networks, and 
 
 ## License
 
-This project is released under the [MIT License](https://github.com/philipempl/itsec1-bot/LICENSE).
+This project is released under the [MIT License](https://github.com/philipempl/lecture-chat/LICENSE).
