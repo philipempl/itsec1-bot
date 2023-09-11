@@ -5,11 +5,10 @@ import os
 # Append the current directory to the system path
 sys.path.append(os.path.abspath('.'))
 
-# Import necessary libraries
 import streamlit as st
 import time
 from app.components.sidebar import sidebar
-from langchain.llms import Ollama
+from langchain.llms import OpenAI
 from langchain.document_loaders import DirectoryLoader
 from langchain.callbacks.manager import CallbackManager
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -18,6 +17,10 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
+
+
+
+os.environ["OPENAI_API_KEY"] = "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"
 
 # Function to load documents from a directory
 def load_docs(directory_path="./docs"):
@@ -33,16 +36,16 @@ def split_docs(documents, chunk_size=1000, chunk_overlap=20):
 def load_chain(documents):
     vectordb = Chroma.from_documents(documents, OpenAIEmbeddings(), persist_directory=".")
     vectordb.persist()
-    llm = Ollama(base_url="http://ollama:11434", 
-             model="alice", 
-             callback_manager = CallbackManager([StreamingStdOutCallbackHandler()]))
+    #llm = Ollama(base_url="http://ollama:11434", 
+    #         model="alice", 
+    #         callback_manager = CallbackManager([StreamingStdOutCallbackHandler()]))
     memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True, input_key='question', output_key='answer')
-    return ConversationalRetrievalChain.from_llm(llm, vectordb.as_retriever(search_kwargs={'k': 6}), return_source_documents=True, memory=memory)
+    return ConversationalRetrievalChain.from_llm(OpenAI(temperature=0), vectordb.as_retriever(search_kwargs={'k': 6}), return_source_documents=True, memory=memory)
 
 
 
 # Get user input text
-def get_text():
+def get_user_input(default_input="Hallo, wie geht es dir"):
     input_text = st.text_input("user", "Hallo, ich bin Alice, wie kann ich dir helfen?", key="input")
     return input_text
 
@@ -57,7 +60,7 @@ if __name__ == "__main__":
     
     # Display the header and sidebar
     st.header("📖 IT Security 1: Fragen zum Kurs")
-    sidebar()
+    #sidebar()
     
     # Load the conversation chain
     docs = split_docs(load_docs())
