@@ -25,10 +25,6 @@ The Lecture Chat project is designed to offer valuable information and assistanc
 
 - [Langflow for Langchain Python](https://github.com/logspace-ai/langflow)
 
-### Open Source LLM Models
-
-- GPT Models by [Hugging Face](https://huggingface.co)
-
 ### Local Deployment of LLMs on CPU
 
 - [Ollama](https://github.com/jmorganca/ollama)
