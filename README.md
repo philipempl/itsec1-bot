@@ -1,8 +1,8 @@
-# Lecture Bot
+# Lecture Chat
 
 ## Introduction
 
-The Lecture Bot project is designed to offer valuable information and assistance on IT Security 1 and VAWI materials. It utilizes various resources like lecture slides, screencasts, PDFs, and YouTube links to provide comprehensive answers to user questions. Notably, each response includes citations and links to the relevant source material, ensuring a deeper understanding and access to additional insights.
+The Lecture Chat project is designed to offer valuable information and assistance on lectures. It utilizes various resources like lecture slides, screencasts, PDFs, and YouTube links to provide comprehensive answers to user questions. Notably, each response includes citations and links to the relevant source material, ensuring a deeper understanding and access to additional insights.
 
 ## Requirements
 
