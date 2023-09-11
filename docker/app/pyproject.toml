@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "itsec1-bot"
+name = "Lecture Bot"
 version = "0.1.0"
-description = "A bot assisting studens"
+description = "A bot assisting students."
 authors = ["Philip Empl"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "itsec1-bot"}]
+packages = [{include = "lecture-bot"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"

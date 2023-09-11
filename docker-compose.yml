@@ -1,8 +1,8 @@
 version: '3'
 services:
-  itsec1-bot:
-    hostname: itsec1-bot
-    container_name: itsec1-bot
+  lecture-bot:
+    hostname: lecture-bot
+    container_name: lecture-bot
     build:
       context: .
       dockerfile: ./docker/app/Dockerfile
