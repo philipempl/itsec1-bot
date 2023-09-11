@@ -8,11 +8,9 @@ The IT Security 1 Chatbot project is designed to offer valuable information and 
 
 1. **On-Premise Solution**: The chatbot operates on an on-premise infrastructure to minimize costs and ensure data privacy.
 
-2. **Private Language Models**: To protect user privacy, private language models like "GPT4All" are used instead of OpenAI GPT.
+2. **Docker Containers**: Docker containers are employed for easy deployment and management of services.
 
-3. **Docker Containers**: Docker containers are employed for easy deployment and management of services.
-
-4. **Open Source Development**: The development of the chatbot exclusively utilizes open-source solutions.
+3. **Open Source Development**: The development of the chatbot exclusively utilizes open-source solutions.
 
 ## Development Resources
 
@@ -34,6 +32,7 @@ The IT Security 1 Chatbot project is designed to offer valuable information and 
 ### Local Deployment of LLMs on CPU
 
 - [Ollama](https://github.com/jmorganca/ollama)
+- [Llama2](https://ai.meta.com/llama/)
 
 ### Python UI
 
@@ -48,18 +47,6 @@ The IT Security 1 Chatbot project is designed to offer valuable information and 
 - [Citations](https://medium.com/@yotamabraham/in-text-citing-with-langchain-question-answering-e19a24d81e39)
 - Search Platform: [Jina](https://github.com/jina-ai/jina)
 - Service for Langchain: [Langchain Serve](https://github.com/jina-ai/langchain-serve)
-
-## Steps
-
-1. **Preparation**: Install the required dependencies such as Python and recommended libraries.
-
-2. **Chain Creation**: Create chains using Flowise based on existing materials as the foundation for the chatbot.
-
-3. **Integrate GPT Models**: Integrate GPT models from Hugging Face for intelligent responses, while designing the user interface using UI Chainlit.
-
-4. **Incorporate Local LLM**: Include the local language model from the Local Language Model project for private and privacy-friendly interactions.
-
-5. **Deployment**: Deploy the chatbot for course participants using Jina and Langchain Serve in a production environment.
 
 ## Deployment
 
