@@ -1,142 +1,134 @@
 # IT Security 1 Chatbot
 
-## Zielsetzung
-Das Ziel dieses Projekts ist die Entwicklung eines Chatbots für IT-Security 1 und VAWI Unterlagen. Der Chatbot wird durch Vorlesungsfolien, Screencasts, PDFs und YouTube-Links Informationen bereitstellen und bei Fragen hilfreiche Antworten generieren. Bei jeder Antwort werden passende Abschnitte aus den genannten Quellen (Vorlesungsfolien, Screencasts, PDFs, YouTube-Links) zitiert und verlinkt, um den Nutzern das Verständnis zu erleichtern und zusätzliche Informationen anzubieten.
+## Introduction
 
-## Anforderungen
-1. **On-Premise Lösung**: Der Chatbot wird auf einer On-Premise-Infrastruktur betrieben, um Kosten zu minimieren und Datenschutz zu gewährleisten.
+The IT Security 1 Chatbot project is designed to offer valuable information and assistance on IT Security 1 and VAWI materials. It utilizes various resources like lecture slides, screencasts, PDFs, and YouTube links to provide comprehensive answers to user questions. Notably, each response includes citations and links to the relevant source material, ensuring a deeper understanding and access to additional insights.
 
-2. **Private Sprachmodelle**: Zum Schutz der Privatsphäre werden private Sprachmodelle wie "GPT4All" eingesetzt, anstelle von OpenAI GPT.
+## Requirements
 
-3. **Docker Container**: Für einfaches Deployment (Starten/Stoppen der Services) werden Docker Container verwendet.
+1. **On-Premise Solution**: The chatbot operates on an on-premise infrastructure to minimize costs and ensure data privacy.
 
-4. **Open Source**: Die Entwicklung des Chatbots erfolgt ausschließlich mithilfe von Open Source Lösungen.
+2. **Private Language Models**: To protect user privacy, private language models like "GPT4All" are used instead of OpenAI GPT.
 
-## Entwicklungsressourcen
-- Programmiersprache: Python
+3. **Docker Containers**: Docker containers are employed for easy deployment and management of services.
+
+4. **Open Source Development**: The development of the chatbot exclusively utilizes open-source solutions.
+
+## Development Resources
+
+- Programming Language: Python
 - [Docker Compose](https://www.docker.com/blog/build-and-deploy-a-langchain-powered-chat-app-with-docker-and-streamlit/)
 
 ### LLM Chaining
+
 - [LangChain](https://github.com/langchain-ai/langchain)
 
 ### Langchain Low-Code No-Code
+
 - [Langflow for Langchain Python](https://github.com/logspace-ai/langflow)
 
 ### Open Source LLM Models
-- GPT Modelle von [Hugging Face](https://huggingface.co)
 
-### Lokales Deployment von LLMs auf CPU
+- GPT Models by [Hugging Face](https://huggingface.co)
+
+### Local Deployment of LLMs on CPU
+
 - [Ollama](https://github.com/jmorganca/ollama)
-- [TGI](https://github.com/huggingface/text-generation-inference)
-- [Llama.cpp](https://github.com/ggerganov/llama.cpp)
-- [OpenLLM](https://github.com/bentoml/OpenLLM)
-- [GPT4All](https://github.com/nomic-ai/gpt4all)
-- [Petals](https://github.com/bigscience-workshop/petals)
-- [Inference](https://github.com/xorbitsai/inference)
-
-### Beispiele
-- [LocalGPT](https://github.com/PromtEngineer/localGPT)
-- [Anything-LLM](https://github.com/Mintplex-Labs/anything-llm)
-- [PrivateGPT](https://github.com/imartinez/privateGPT)
 
 ### Python UI
+
 - [Streamlit](https://github.com/streamlit/streamlit)
-- [Chainlit](https://github.com/Chainlit/chainlit)
 
-### (Vektor-)Datenbanken
+### (Vector) Databases
+
 - [ChromaDB](https://github.com/chroma-core/chroma)
-- [FAISS](https://github.com/facebookresearch/faiss)
-- [Postgresql](https://www.postgresql.org)
-- Vektorähnliche Daten in Postgresql: [pgvector](https://github.com/pgvector/pgvector)
 
-### Andere Links
+### Other Links
+
 - [Citations](https://medium.com/@yotamabraham/in-text-citing-with-langchain-question-answering-e19a24d81e39)
-- Suchplattform: [Jina](https://github.com/jina-ai/jina)
-- Dienst für Langchain: [Langchain Serve](https://github.com/jina-ai/langchain-serve)
+- Search Platform: [Jina](https://github.com/jina-ai/jina)
+- Service for Langchain: [Langchain Serve](https://github.com/jina-ai/langchain-serve)
 
+## Steps
 
-## Schritte
-1. **Vorbereitung**: Installieren der benötigten Abhängigkeiten wie Python und die empfohlenen Bibliotheken.
+1. **Preparation**: Install the required dependencies such as Python and recommended libraries.
 
-2. **Chain-Erstellung**: Erstellen von Chains mit Flowise basierend auf vorhandenen Materialien als Grundlage für den Chatbot.
+2. **Chain Creation**: Create chains using Flowise based on existing materials as the foundation for the chatbot.
 
-3. **GPT Modelle integrieren**: Integration der GPT Modelle von Hugging Face für intelligente Antworten, wobei die Benutzeroberfläche mit UI Chainlit gestaltet wird.
+3. **Integrate GPT Models**: Integrate GPT models from Hugging Face for intelligent responses, while designing the user interface using UI Chainlit.
 
-4. **Lokales LLM integrieren**: Einbinden des lokalen Sprachmodells aus dem Local Language Model Projekt für private und datenschutzfreundliche Interaktionen.
+4. **Incorporate Local LLM**: Include the local language model from the Local Language Model project for private and privacy-friendly interactions.
 
-5. **Produktivsetzung**: Den Chatbot für Kursteilnehmer:innen mit Jina und Langchain Serve in einer Produktivumgebung bereitstellen.
+5. **Deployment**: Deploy the chatbot for course participants using Jina and Langchain Serve in a production environment.
 
 ## Deployment
 
-Folgen Sie diesen Schritten, um die bereitgestellten Dienste mit Docker Compose auszuführen:
+Follow these steps to run the provided services using Docker Compose:
 
-1. **Docker und Docker Compose installieren:**
+1. **Install Docker and Docker Compose:**
 
-   Stellen Sie sicher, dass Docker und Docker Compose auf Ihrem System installiert sind. Falls nicht, können Sie sie von der offiziellen Docker-Website herunterladen und installieren: [Docker](https://www.docker.com/) und [Docker Compose](https://docs.docker.com/compose/install/).
+   Ensure that Docker and Docker Compose are installed on your system. If not, you can download and install them from the official Docker website: [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/install/).
 
-2. **Repository klonen:**
+2. **Clone the Repository:**
 
-   Klonen Sie dieses Repository auf Ihre lokale Maschine.
+   Clone this repository to your local machine.
 
-3. **Dienste starten:**
+3. **Start Services:**
 
-   Starten Sie die in der Datei `docker-compose.yml` definierten Dienste mit dem folgenden Befehl:
+   Start the services defined in the `docker-compose.yml` file using the following command:
 
    ```bash
    docker-compose up -d
    ```
 
-   Die Option `-d` steht für den "detach"-Modus, der die Dienste im Hintergrund ausführt.
+   The `-d` option stands for "detach" mode, which runs the services in the background.
 
-4. **Zugriff auf Benutzeroberflächen:**
+4. **Access User Interfaces:**
 
-   Nach dem Start der Dienste können Sie auf die verschiedenen Benutzeroberflächen über die folgenden URLs zugreifen:
+   After starting the services, you can access the various user interfaces using the following URLs:
 
-### Erreichbare Benutzeroberflächen (UIs)
+### Accessible User Interfaces (UIs)
 
-1. **IT-Sicherheitsbot-Benutzeroberfläche (`itsec1-bot`):**
+1. **IT Security Bot Interface (`itsec1-bot`):**
 
-   Die Benutzeroberfläche des IT-Sicherheitsbots ist über einen Webbrowser zugänglich, indem Sie folgende Adresse aufrufen:
+   The IT Security Bot interface is accessible via a web browser by visiting:
 
    ```
    http://localhost:8080
    ```
 
-   Diese Oberfläche ermöglicht die Interaktion mit dem IT-Sicherheitsbot.
+   This interface allows interaction with the IT Security Bot.
 
-2. **Benutzeroberfläche des Sprachverarbeitungstools (`langflow`):**
+2. **Language Processing Tool Interface (`langflow`):**
 
-   Die Benutzeroberfläche des Sprachverarbeitungstools erreichen Sie unter:
+   The Language Processing Tool interface can be accessed at:
 
    ```
    http://localhost:7860
    ```
 
-   Hier stehen die Funktionen des `langflow` Dienstes für die Sprachverarbeitung zur Verfügung.
+   Here, the functions of the `langflow` service for language processing are available.
 
-3. **Benutzeroberfläche der PostgreSQL-Datenbank:**
+3. **Code Syntax Highlighting Interface (`chroma`):**
 
-   Es gibt keine direkte Benutzeroberfläche für die PostgreSQL-Datenbank. Der Zugriff erfolgt über PostgreSQL-Client-Tools oder -Bibliotheken.
-
-4. **Benutzeroberfläche für die Hervorhebung von Code-Syntax (`chroma`):**
-
-   Die Benutzeroberfläche für den Dienst zur Hervorhebung von Code-Syntax ist erreichbar unter:
+   The interface for the code syntax highlighting service is reachable at:
 
    ```
    http://localhost:8000
    ```
 
-   Diese Oberfläche ermöglicht es, die Funktionen des `chroma` Dienstes zur Code-Syntax-Hervorhebung zu testen und zu nutzen.
+   This interface allows testing and using the `chroma` service's code syntax highlighting functions.
 
-### Beenden der Dienste
+### Stopping the Services
 
-Um die Dienste zu stoppen und zu entfernen, führen Sie den folgenden Befehl im Verzeichnis aus, in dem sich die Datei `docker-compose.yml` befindet:
+To stop and remove the services, execute the following command in the directory containing the `docker-compose.yml` file:
 
 ```bash
 docker-compose down
 ```
 
-Dadurch werden die Dienste gestoppt und die dazugehörigen Container, Netzwerke und Volumes entfernt.
+This will stop the services and remove the associated containers, networks, and volumes.
 
-## Lizenz
-Dieses Projekt ist unter der [MIT Lizenz](https://github.com/philipempl/itsec1-bot/LICENSE) veröffentlicht.
+## License
+
+This project is released under the [MIT License](https://github.com/philipempl/itsec1-bot/LICENSE).
