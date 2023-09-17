@@ -8,8 +8,8 @@ services:
       dockerfile: ./docker/app/Dockerfile
     volumes:
       - ./app/:/app/app
-    ports:
-      - 8080:8080
+#    ports:
+#      - 8080:8080
     restart: always
     networks:
       - net
@@ -39,8 +39,8 @@ services:
     build:
       context: ./docker/ollama
       dockerfile: Dockerfile
-    ports:
-      - "11434:11434"
+ #   ports:
+ #     - "11434:11434"
     volumes:
       - ollama_data:/app
     networks:
