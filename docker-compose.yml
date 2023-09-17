@@ -13,6 +13,16 @@ services:
     restart: always
     networks:
       - net
+      
+  nginx:
+    image: nginx
+    container_name: my-nginx-container
+    volumes:
+      - ./docker/nginx/nginx-conf:/etc/nginx/conf.d  
+    ports:
+      - "80:80" 
+    networks:
+      - net
 
   langflow:
     build:
